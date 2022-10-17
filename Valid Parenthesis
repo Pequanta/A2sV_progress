@@ -1,0 +1,42 @@
+class Stack:
+    def __init__(self):
+        self.__data = []
+    def pop(self):
+        self.__data.pop()
+    def push(self, item):
+        self.__data.append(item)
+    def empty(self):
+        return len(self.__data) == 0
+    def peak(self):
+        return self.__data[-1]
+    def show_stack(self):
+        return self.__data
+        
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = Stack()
+        for c in s:
+            if stack.empty():
+                stack.push(c)
+                continue
+
+            elif  stack.peak() == "(":
+                if c == ")":
+                    stack.pop()
+                else:
+                    stack.push(c)
+            elif  stack.peak() == "[":
+                if c == "]":
+                    stack.pop()
+                else:
+                    stack.push(c)
+            elif  stack.peak() == "{":
+                if c == "}":
+                    stack.pop()
+                else:
+                    stack.push(c)
+            else:
+                stack.push(c)
+
+        if stack.empty(): return True
+        else: return False
