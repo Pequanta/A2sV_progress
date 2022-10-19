@@ -1,0 +1,5 @@
+class Solution:
+    def targetIndices(self, nums: List[int], target: int) -> List[int]:
+        lst = sorted(nums)
+        result = [i for i in range(len(lst)) if lst[i] == target ]
+        return result
