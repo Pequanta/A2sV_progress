@@ -1,0 +1,44 @@
+class Stack:
+    class _Node:
+        def __init__(self ,data):
+            self.data = data
+            self.next = None
+        def getVal(self):
+            return self.data
+        def getNext(self):
+            return self.next
+    def __init__(self):
+        self.head = None
+    def push(self, val):
+        newNode = self._Node(val)
+        newNode.next = self.head
+        self.head = newNode
+    def peek(self):
+        return self.head.data
+    def pop(self):
+        if not self.head: return 
+        self.head = self.head.next
+    def is_empty(self):
+        return self.head == None
+
+
+
+class Solution:
+    def reverseParentheses(self, s: str) -> str:
+        stack_inst = Stack()
+        result = ""
+        for spell in s:
+            res = ""
+            if spell != ")":
+                stack_inst.push(spell)
+            else:
+                while stack_inst.peek() != "(":
+                    res += stack_inst.peek()
+                    stack_inst.pop()
+                stack_inst.pop()
+                for another_spell in res:
+                    stack_inst.push(another_spell)
+        while not stack_inst.is_empty():
+            result += stack_inst.peek()
+            stack_inst.pop()
+        return result[::-1]
