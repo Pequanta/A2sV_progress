@@ -1,0 +1,16 @@
+class Solution:
+    def findKthBit(self, n: int, k: int) -> str:
+        def invert(string):
+            s = list(string)
+            for i in range(len(string)):
+                if s[i] == "1":
+                    s[i] = "0"
+                else:
+                    s[i] = "1"
+            return "".join(s)
+        s1 = "0"
+        count= 0
+        while count < n - 1:
+            s1 += "1" + invert(s1)[::-1]
+            count += 1
+        return s1[k- 1]
