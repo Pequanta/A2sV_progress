@@ -1,0 +1,7 @@
+from collections import Counter
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        counted = Counter(nums)
+        res = sorted(counted.keys(), key = lambda x: counted[x])
+        #print(res)
+        return res[-1 * k:]
