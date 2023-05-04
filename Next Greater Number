@@ -1,0 +1,15 @@
+class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        res =[]
+        for num in nums1:
+            index = nums2.index(num)
+            if num >= max(nums2[index:]):
+                res.append(-1)
+                continue
+            j = index + 1
+            while j < len(nums2):
+                if nums2[j] > num:
+                    res.append(nums2[j])
+                    break
+                j += 1
+        return res
